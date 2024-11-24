@@ -1,18 +1,31 @@
 #include <iostream>
 ///#include <array>
 #include <chrono>
-#include <thread>
-#include <Helper.h>
 #include <sstream>
 ///#include <setjmp.h>
 #include "./headers/Inamic.h"
 #include "./headers/Abilitate.h"
 #include "./headers/Player.h"
 #include "./headers/Game.h"
-
+#include "raylib.h"
 
 
 int main() {
+
+    // 800x450 is 16:9
+    InitWindow(800, 450, "Raylib");
+    SetTargetFPS(60);
+
+    while (!WindowShouldClose()) {
+
+        BeginDrawing();
+        ClearBackground(SKYBLUE);
+
+        EndDrawing();
+    }
+
+    CloseWindow();
+
 
     Inamic in1("Overlord",30,5,105);
     Player jucator(300,400,100,1,200,0);
