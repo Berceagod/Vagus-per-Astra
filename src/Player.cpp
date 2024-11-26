@@ -4,7 +4,7 @@
 
 #include "../headers/Player.h"
 #include <iostream>
-
+#include <math.h>
     Player::Player() {
         this->pozx= 0;
         this->pozy= 0;
@@ -13,6 +13,16 @@
         this->hp=0;
         this->xplvlup=200;
         this->xpcurent=0;
+        image = LoadTexture("../Textures/Spaceship.png");
+        position.x=(GetScreenWidth()-image.width)/2;
+        position.y=(GetScreenHeight()-image.height)/2;
+        speed=Vector2{0,0};
+        acceleration=0.0;
+        rotation=0.0;
+        Player_Size=20.0;
+        shipHeight = (Player_Size/2)/tanf(20*DEG2RAD);
+        collider = (Vector3){position.x + sin(rotation*DEG2RAD)*(shipHeight/2.5f), position.y - cos(rotation*DEG2RAD)*(shipHeight/2.5f), 12};
+        DefSpeed = 3;
     };
     Player::Player(float x, float y,int health,int level,int xplvl,int xpcur) : pozx{x},pozy{y}, hp{health}, lvl{level}, xplvlup{xplvl}, xpcurent{xpcur} {};
     Player::Player(const Player& other) =default;
@@ -30,12 +40,37 @@
         return xpcurent;
     }
 
-    [[nodiscard]] float Player::getPozitiex() const {
-        return pozx;
+    [[nodiscard]] Vector2 Player::getPozitie() const {
+        return position;
     }
-    [[nodiscard]] float Player::getPozitiey() const {
-        return pozy;
+    [[nodiscard]] Vector2  Player::getSpeed() const {
+        return speed;
     }
+    [[nodiscard]] float Player::getRotation() const {
+        return rotation;
+    }
+    [[nodiscard]] float Player::getdefspeed() const {
+        return DefSpeed;
+    }
+    [[nodiscard]] float Player::getspeedx() const {
+        return speed.x;
+    }
+    [[nodiscard]] float Player::getspeedy() const {
+        return speed.y;
+    }
+     [[nodiscard]] float Player::getPozx() const {
+        return position.x;
+    }
+     [[nodiscard]] float Player::getPozy() const {
+        return position.y;
+    }
+    [[nodiscard]] float Player::getAccel() const {
+
+        return acceleration;
+    }
+
+
+
     std::vector<Abilitate> &Player::getAbilitati() {
         return abilitati;
     }
@@ -43,9 +78,19 @@
         abilitati.push_back(abilitate);
     }
 
-    void Player::setPozitie(float x, float y) {
-        this->pozx=x;
-        this->pozy=y;
+    void Player::setPozitie(Vector2 position) {
+        this->position=position;
+    }
+    void Player::setSpeed(float speedx, float speedy) {
+        this->speed.x=speedx;
+        this->speed.y=speedy;
+    }
+
+    void Player::setPozx(float x) {
+        this->position.x=x;
+    }
+    void Player::setPozy(float y) {
+        this->position.y=y;
     }
 
     void Player::setHp(int hp) {
@@ -74,6 +119,8 @@
     }
     Player::~Player() {
         std::cout << "Playerul a fost distrus" << std::endl;
+
+        UnloadTexture(image);
     }
 
      std::ostream& operator<<(std::ostream& os, const Player& p) {
@@ -106,3 +153,37 @@
         }
         return false;
     }
+
+void Player::Draw() {
+        Rectangle sourceRect = { 0.0f, 0.0f, (float)image.width, (float)image.height };
+        Rectangle destRect = { position.x, position.y, (float)image.width, (float)image.height };
+        Vector2 origin = { (float)image.width / 2, (float)image.height / 2 };
+        DrawTexturePro(image, sourceRect, destRect, origin, rotation, WHITE);
+}
+void Player::MoveForward() {
+        if (acceleration < 1) acceleration += 0.04f;
+}
+void Player::MoveBackward() {
+        if (acceleration > -1) acceleration -= 0.24f;
+
+    }
+void Player::RotateLeft() {
+    rotation -=1.5;
+}
+void Player::RotateRight() {
+    rotation +=1.5;
+}
+void Player::SlowDown() {
+        if (acceleration > 0) acceleration -= 0.02f;
+        else if (acceleration < 0) acceleration = 0;
+}
+void Player::PlayerStrafeLeft() {
+        position.x -= (cos(rotation * DEG2RAD) * DefSpeed)/4;
+        position.y -= (sin(rotation * DEG2RAD) * DefSpeed) /4;
+}
+void Player::PlayerStrafeRight() {
+        position.x += ( cos(rotation * DEG2RAD) * DefSpeed)/4;
+        position.y += ( sin(rotation * DEG2RAD) * DefSpeed)/4;
+    }
+
+

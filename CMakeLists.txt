@@ -30,6 +30,8 @@ add_executable(${PROJECT_NAME}
         src/Inamic.cpp
         headers/Abilitate.h
         src/Abilitate.cpp
+        headers/AdefaultGun.h
+        src/AdefaultGun.cpp
 )
 
 # Include Raylib's header directory explicitly

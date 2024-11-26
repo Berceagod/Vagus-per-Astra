@@ -9,26 +9,28 @@
 
 class Abilitate {
 private:
-    int damage;
+    float damage;
     std::string name;
     int nivel;
+    float cd;
 public:
     Abilitate();
-    Abilitate(const std::string &nume, int nivel, int damage);
+    Abilitate(const std::string &nume, int nivel, float damage,float cd);
     const std::string &getName();
     [[nodiscard]] int getNivel() const;
-    [[nodiscard]]int getDamage() const;
+    [[nodiscard]]float getDamage() const;
+    [[nodiscard]]float getCd() const;
 
     void setName(const std::string &name);
     void setNivel(int nivel);
-    void setDamage(int damage);
-
+    void setDamage(float damage);
+    void setCd(float cd);
 
     friend std::ostream& operator<<(std::ostream& os, const Abilitate& ab);
 
     Abilitate& operator=(const Abilitate& other);
 
-    ~Abilitate();
+    virtual ~Abilitate();
 
 };
 
