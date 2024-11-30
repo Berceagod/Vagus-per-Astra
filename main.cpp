@@ -124,7 +124,7 @@ int main() {
         DrawTextureEx(background, Vector2{-backgroundOffset.x, -backgroundOffset.y}, 0, scale, WHITE);
 
          game.Draw();
-        // GameRender();
+
         EndDrawing();
     }
     UnloadTexture(background);
