@@ -6,6 +6,7 @@
 #define GAME_H
 
 #include "Player.h"
+#include "raylib.h"
 class Game{
 private:
     Player player;
@@ -13,11 +14,15 @@ private:
 public:
     Game();
     void addPlayer(const Player &p);
-    static void Start();
+    void Start();
     void Draw();
     void Update();
     void HandleInput();
+    void ShutDown();
 
+    float getCameraTargetx();
+    float getCameraTargety();
+    float getCameraZoom();
     ~Game();
 };
 

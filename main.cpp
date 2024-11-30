@@ -8,6 +8,39 @@
 #include "./headers/Player.h"
 #include "./headers/Game.h"
 #include "raylib.h"
+#include "raymath.h"
+
+// Camera2D camera = { 0 };
+//
+ const int screenWidth =  800;
+ const int screenHeight = 600;
+//
+// void GameStartup() {
+//     InitAudioDevice();
+//     camera.target=(Vector2) {0,0};
+//     camera.offset=(Vector2) {(float)screenWidth/2,(float)screenHeight/2};
+//     camera.rotation=0.0f;
+//     camera.zoom=3.0f;
+// }
+// void GameUpdate()
+// {
+//     float wheel= GetMouseWheelMove();
+//     if (wheel!=0) {
+//         const float zoomIncrement=0.125f;
+//         camera.zoom+=(wheel*zoomIncrement);
+//     }
+//     camera.target=(Vector2) {0,0};
+// }
+// void GameRender()
+// {
+//     BeginMode2D(camera);
+//
+//     EndMode2D();
+// }
+// void GameShutdown() {
+//     CloseAudioDevice();
+// }
+
 
 
 int main() {
@@ -60,7 +93,7 @@ int main() {
 
 
     // 800x450 is 16:9
-    InitWindow(1920, 1080, "Vagus per Astra");
+    InitWindow(screenWidth, screenHeight, "Vagus per Astra");
     SetTargetFPS(60);
     Color Lightblue=Color(173,216,230,255);
     Texture2D background = LoadTexture("../Textures/Space_Background.png");
@@ -69,18 +102,33 @@ int main() {
 
     Game game;
 
+    // GameStartup();
+    game.Start();
+
+
 
     while (!WindowShouldClose()) {
-         game.HandleInput();
 
+         game.HandleInput();
+        // GameUpdate();
 
         BeginDrawing();
-       ClearBackground(Lightblue);
-         DrawTextureEx(background, Vector2{0,0},0, 6, WHITE);
+         ClearBackground(Lightblue);
+         // DrawTextureEx(background, Vector2{0,0},0, 6, WHITE);
+
+        Vector2 backgroundOffset = {
+         game.getCameraTargetx() - screenWidth / game.getCameraZoom(),
+         game.getCameraTargety() - screenHeight / game.getCameraZoom()
+        };
+        float scale = 10.0f * game.getCameraZoom();
+        DrawTextureEx(background, Vector2{-backgroundOffset.x, -backgroundOffset.y}, 0, scale, WHITE);
+
          game.Draw();
+        // GameRender();
         EndDrawing();
     }
     UnloadTexture(background);
+    game.ShutDown();
     CloseWindow();
 
 
