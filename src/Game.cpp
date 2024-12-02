@@ -72,7 +72,11 @@ void Game::HandleInput() {
         player.PlayerStrafeLeft();
     }
     if (IsKeyDown(KEY_T)) {
-        player.addAbility(new AdefaultGun());
+        try {
+            player.addAbility(new AdefaultGun());
+        }catch (const AbilityAlreadyThere& e) {
+            std::cout << "Exception caught: " << e.what() << std::endl;
+        }
     }
     player.AbilitiesCheck();
 

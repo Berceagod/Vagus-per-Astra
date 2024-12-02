@@ -1,8 +1,10 @@
 # Titlu proiect
  Vagus per Astra
 ## Descriere proiect
- This is a roguelike space themed game that is made in c++ with the help of raylib ( https://www.raylib.com/ ). In this game you play as a spaceship that has to fight off other spaceships ( creative , i know ) with the help of randomly picked abilities that can be upgraded as the game goes on .  
+ This is a roguelike space themed game that is made in c++ with the help of raylib ( https://www.raylib.com/ ). In this game you play as a spaceship that has to fight off other spaceships ( creative , i know ) with the help of randomly picked abilities that can be upgraded as the game goes on . 
 
+
+![Default_Texture.jpg](Textures%2FDefault_Texture.jpg)
 ## Milestone #0
 
 - [x] Nume proiect (poate fi schimbat ulterior)
@@ -49,7 +51,7 @@
 - [x] STL
 - [ ] cât mai multe `const`
 - [x] funcții *de nivel înalt*, de eliminat cât mai mulți getters/setters/funcții low-level
-- [ ] tag de `git`: de exemplu `v0.2`
+- [x] tag de `git`: de exemplu `v0.2`
 
 ## Milestone #3
 

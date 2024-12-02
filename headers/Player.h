@@ -10,7 +10,7 @@
 #include "Inamic.h"
 #include "raylib.h"
 #include <array>
-
+#include "CostumExceptions.h"
 class Player {
 private:
     float pozx;

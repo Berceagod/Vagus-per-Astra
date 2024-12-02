@@ -7,6 +7,7 @@
 
 #include "Player.h"
 #include "raylib.h"
+#include "CostumExceptions.h"
 class Game{
 private:
     Player player;

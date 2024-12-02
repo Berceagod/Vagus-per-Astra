@@ -129,6 +129,11 @@ Player::Player() {
     }
 
     void Player::addAbility(Abilitate* abilitate) {
+        for (Abilitate* a : abilitati) {
+            if (typeid(*a) == typeid(*abilitate)) {
+                throw AbilityAlreadyThere();
+            }
+        }
         abilitati.push_back(abilitate);
     }
     void Player::AbilitiesCheck() const {
