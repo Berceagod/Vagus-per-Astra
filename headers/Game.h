@@ -15,7 +15,7 @@ public:
     Game();
     void addPlayer(const Player &p);
     void Start();
-    void Draw();
+    void Draw(Texture2D &background);
     void Update();
     void HandleInput();
     void ShutDown();

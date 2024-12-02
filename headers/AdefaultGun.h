@@ -9,6 +9,7 @@
 
 class AdefaultGun: public Abilitate {
     public:
+    AdefaultGun();
     AdefaultGun(const std::string &nume, int nivel, float damage,float cd);
     virtual ~AdefaultGun();
 };

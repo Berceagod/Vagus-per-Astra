@@ -3,9 +3,10 @@
 //
 #include "../headers/AdefaultGun.h"
 #include <iostream>
+AdefaultGun::AdefaultGun()=default;
 AdefaultGun::AdefaultGun(const std::string &nume, int nivel, float damage, float cd)
     : Abilitate(nume,nivel,damage,cd){}
 AdefaultGun::~AdefaultGun() {
-    std::cout<<" Abilitatea default a fost distrusa";
+    std::cout<<"Default ability has been destroyed"<<std::endl;
 }
 

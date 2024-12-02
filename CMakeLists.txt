@@ -32,6 +32,12 @@ add_executable(${PROJECT_NAME}
         src/Abilitate.cpp
         headers/AdefaultGun.h
         src/AdefaultGun.cpp
+        headers/ANuke.h
+        src/ANuke.cpp
+        headers/AElectricField.h
+        src/AElectricField.cpp
+        headers/ABulletBurst.h
+        src/ABulletBurst.cpp
 )
 
 # Include Raylib's header directory explicitly
