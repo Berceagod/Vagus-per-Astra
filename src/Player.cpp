@@ -9,7 +9,7 @@
         this->pozx= 0;
         this->pozy= 0;
         this->lvl = 0;
-        this->abilitati = std::vector<Abilitate>();
+        ///this->abilitati = std::vector<Abilitate>();
         this->hp=0;
         this->xplvlup=200;
         this->xpcurent=0;
@@ -71,12 +71,12 @@
 
 
 
-    std::vector<Abilitate> &Player::getAbilitati() {
-        return abilitati;
-    }
-    void Player::addAbilitate(const Abilitate &abilitate) {
-        abilitati.push_back(abilitate);
-    }
+    // std::vector<Abilitate> &Player::getAbilitati() {
+    //     return abilitati;
+    // }
+    // void Player::addAbilitate(const Abilitate &abilitate) {
+    //     abilitati.push_back(abilitate);
+    // }
 
     void Player::setPozitie(Vector2 position) {
         this->position=position;
@@ -111,7 +111,7 @@
             pozy=other.pozy;
             hp = other.hp;
             lvl = other.lvl;
-            abilitati = other.abilitati;
+            ///abilitati = other.abilitati;
             xplvlup = other.xplvlup;
             xpcurent=other.xpcurent;
         }

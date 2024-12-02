@@ -9,4 +9,13 @@ ANuke::ANuke(const std::string &nume, int nivel, float damage, float cd)
 ANuke::~ANuke() {
     std::cout<<"Nuke ability has been destroyed "<<std::endl;
 }
+std::unique_ptr<Abilitate> ANuke::clone() const {
+    return std::make_unique<ANuke>(*this);
+}
+void ANuke::ExecuteEffect() {
+    std::cout << "Executing Bullet Burst: A burst of bullets deals "<< std::endl;
+}
+void ANuke::LoadTextr() {
+    texture=LoadTexture("../Textures/Default_Texture.jpg");
+}
 

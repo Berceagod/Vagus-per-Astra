@@ -11,6 +11,11 @@ class ABulletBurst : public Abilitate {
 public:
     ABulletBurst();
     ABulletBurst(const std::string &nume, int nivel, float damage,float cd);
-    virtual ~ABulletBurst();
+
+    [[nodiscard]]std::unique_ptr<Abilitate> clone() const override;
+    void ExecuteEffect() override;
+    void LoadTextr() override;
+    ~ABulletBurst() override;
+
 };
 #endif //ABULLETBURST_H

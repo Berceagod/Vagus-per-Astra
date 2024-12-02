@@ -11,7 +11,11 @@ class ANuke : public Abilitate {
 public:
     ANuke();
     ANuke(const std::string &nume, int nivel, float damage,float cd);
-    virtual ~ANuke();
+    [[nodiscard]]std::unique_ptr<Abilitate> clone() const override;
+    void ExecuteEffect() override;
+    void LoadTextr() override;
+     ~ANuke() override;
+
 };
 
 #endif //ANUKE_H

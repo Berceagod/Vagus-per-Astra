@@ -17,7 +17,7 @@ private:
     float pozy;
     int hp;
     int lvl;
-    std::vector<Abilitate> abilitati;
+    ///std::vector<Abilitate> abilitati;
     int xplvlup;
     int xpcurent;
     Texture2D image;
@@ -47,8 +47,8 @@ public:
     [[nodiscard]] float getPozx () const;
     [[nodiscard]] float getPozy () const;
     [[nodiscard]] float getAccel () const;
-    std::vector<Abilitate> &getAbilitati();
-    void addAbilitate(const Abilitate &abilitate);
+    ///std::vector<Abilitate> &getAbilitati();
+    ///void addAbilitate(const Abilitate &abilitate);
 
     void setPozitie(Vector2 positie);
     void setSpeed(float speedx, float speedy);

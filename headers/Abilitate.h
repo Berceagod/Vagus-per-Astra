@@ -5,7 +5,8 @@
 #ifndef ABILITATE_H
 #define ABILITATE_H
 #include <string>
-
+#include <memory>
+#include "raylib.h"
 
 class Abilitate {
 private:
@@ -13,6 +14,8 @@ private:
     std::string name;
     int nivel;
     float cd;
+protected:
+    Texture2D texture;
 public:
     Abilitate();
     Abilitate(const std::string &nume, int nivel, float damage,float cd);
@@ -28,12 +31,19 @@ public:
 
     friend std::ostream& operator<<(std::ostream& os, const Abilitate& ab);
 
-    Abilitate& operator=(const Abilitate& other);
+    ///Non-Virtual interfaces xoxo
 
+    void Draw();
+
+    ///Virtual methods 0_0
+
+    [[nodiscard]]virtual std::unique_ptr<Abilitate> clone() const=0;
+    virtual void ExecuteEffect() = 0;
     virtual ~Abilitate();
+    virtual void LoadTextr()=0;
+
 
 };
-
 
 
 #endif //ABILITATE_H

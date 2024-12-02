@@ -9,6 +9,7 @@
         std::string name="nu exista";
         this->nivel=0;
         this->cd=0;
+        this->texture=LoadTexture("../Textures/Default_Texture.jpg");
     };
 Abilitate::Abilitate(const std::string &nume, int nivel, float damage, float cd) {
     this->name = nume;
@@ -47,8 +48,11 @@ std::ostream& operator<<(std::ostream& os, const Abilitate& ab) {
     return os;
 }
 
-Abilitate& Abilitate::operator=(const Abilitate& other)=default;
-
  Abilitate::~Abilitate() {
     std::cout << "Abilitate distrusa" << std::endl;
+}
+///Non Virtual Interface
+void Abilitate::Draw() {
+    LoadTextr();
+    DrawTexture(texture,0,0,WHITE);
 }

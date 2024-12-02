@@ -11,6 +11,10 @@ class AElectricField : public Abilitate {
 public:
     AElectricField();
     AElectricField(const std::string &nume, int nivel, float damage,float cd);
-    virtual ~AElectricField();
+
+    [[nodiscard]]std::unique_ptr<Abilitate> clone() const override;
+    void ExecuteEffect() override;
+    void LoadTextr() override;
+     ~AElectricField() override;
 };
 #endif //AELECTRICFIELD_H
