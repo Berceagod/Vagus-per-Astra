@@ -131,7 +131,11 @@ Player::Player() {
     void Player::addAbility(Abilitate* abilitate) {
         for (Abilitate* a : abilitati) {
             if (typeid(*a) == typeid(*abilitate)) {
-                throw AbilityAlreadyThere();
+                if(a->getNivel()==10) {
+                    throw AbilityMaxLevelExceeded(a->getNivel());
+                }
+                a->setNivel(a->getNivel() + 1);
+                throw AbilityAlreadyThere(a->getNivel());
             }
         }
         abilitati.push_back(abilitate);
@@ -140,7 +144,7 @@ Player::Player() {
         for (Abilitate* abilitate : abilitati) {
             AdefaultGun* abilitateA = dynamic_cast<AdefaultGun*>(abilitate);
             if (abilitateA) {
-                std::cout << "Abilitatea A a fost gasita!" << std::endl;
+                ///std::cout << "Abilitatea A a fost gasita!" << std::endl;
             }
         }
 

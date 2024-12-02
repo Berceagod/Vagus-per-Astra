@@ -76,14 +76,23 @@ void Game::HandleInput() {
             player.addAbility(new AdefaultGun());
         }catch (const AbilityAlreadyThere& e) {
             std::cout << "Exception caught: " << e.what() << std::endl;
+
+        }catch (const AbilityMaxLevelExceeded& e) {
+            std::cout << "Exception caught: " << e.what() << std::endl;
         }
     }
     player.AbilitiesCheck();
 
-
+try {
     player.setPozx(player.getPozx() + (player.getspeedx() * player.getAccel()));
     player.setPozy(player.getPozy() + (player.getspeedy() * player.getAccel()));
-
+    if(player.getPozy()<0.0f)
+    {
+        throw OutOfBounds();
+    }
+}catch(const OutOfBounds& e) {
+    std::cout << "Exception caught: " << e.what() << std::endl;
+};
     // Camera updates
     camera.target = (Vector2){player.getPozx(), player.getPozy()};
     camera.zoom += ((float)GetMouseWheelMove() * 0.05f);
@@ -102,7 +111,11 @@ void Game::HandleInput() {
         player.setPozy(900);
     }
 
-    std::cout << "Coordonatele sint: " << player.getPozx() << " " << player.getPozy() << std::endl;
+    if (IsKeyDown(KEY_F)) {
+        std::cout << "Coordonatele sunt: " << player.getPozx() << " " << player.getPozy() << std::endl;
+    }
+
+
 }
 
 void Game::ShutDown() {

@@ -45,11 +45,11 @@
     - [x] smart pointers (recomandat, opțional)
 - [ ] excepții
   - [ ] ierarhie proprie cu baza `std::exception` sau derivată din `std::exception`; minim **3** clase pentru erori specifice
-  - [ ] utilizare cu sens: de exemplu, `throw` în constructor (sau funcție care întoarce un obiect), `try`/`catch` în `main`
+  - [x] utilizare cu sens: de exemplu, `throw` în constructor (sau funcție care întoarce un obiect), `try`/`catch` în `main`
   - această ierarhie va fi complet independentă de ierarhia cu funcții virtuale
-- [ ] funcții și atribute `static`
+- [x] funcții și atribute `static`
 - [x] STL
-- [ ] cât mai multe `const`
+- [x] cât mai multe `const`
 - [x] funcții *de nivel înalt*, de eliminat cât mai mulți getters/setters/funcții low-level
 - [x] tag de `git`: de exemplu `v0.2`
 

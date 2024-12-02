@@ -13,6 +13,7 @@ private:
     std::string name;
     int dmg;
     int xp;
+    static int Counter;
 public:
     Inamic();
     Inamic(const std::string &name,int hp, int damage,int xp);
@@ -25,7 +26,7 @@ public:
     void setHp(int hp);
     void setDmg(int dmg);
     void setXp(int xp);
-
+    static void CounterIncrement();
     friend std::ostream& operator<<(std::ostream& os, const Inamic& in);
     Inamic& operator=(const Inamic& other);
 

@@ -4,6 +4,7 @@
 
 #include "../headers/Inamic.h"
 #include <iostream>
+int Inamic::Counter = 0;
     Inamic::Inamic() {
         this->hp=0;
         this->xp = 0;
@@ -58,6 +59,11 @@ void Inamic::lvlup() {
     this->hp = this->hp+static_cast<int>(this->hp*0.10);
     this->dmg = this->dmg+1;
 }
+
+void Inamic::CounterIncrement() {
+    Counter++;
+}
+
 
 Inamic::~Inamic() {
     std::cout << "Inamic distrus " << std::endl;
