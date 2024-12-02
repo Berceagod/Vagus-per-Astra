@@ -38,6 +38,8 @@ add_executable(${PROJECT_NAME}
         src/AElectricField.cpp
         headers/ABulletBurst.h
         src/ABulletBurst.cpp
+        headers/CostumExceptions.h
+        src/CostumExceptions.cpp
 )
 
 # Include Raylib's header directory explicitly
