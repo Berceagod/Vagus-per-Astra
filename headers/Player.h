@@ -9,7 +9,7 @@
 #include "Abilitate.h"
 #include "Inamic.h"
 #include "raylib.h"
-
+#include <array>
 
 class Player {
 private:
@@ -17,7 +17,7 @@ private:
     float pozy;
     int hp;
     int lvl;
-    ///std::vector<Abilitate> abilitati;
+    std::vector<Abilitate*> abilitati;
     int xplvlup;
     int xpcurent;
     Texture2D image;
@@ -69,6 +69,9 @@ public:
     [[nodiscard]] bool alive() const;
     void getKillXp(const Inamic& in);
     [[nodiscard]]bool CheckXP();
+
+    void addAbility(Abilitate* abilitate);
+    void AbilitiesCheck() const;
 
 
     void Draw();

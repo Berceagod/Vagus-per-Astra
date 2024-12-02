@@ -43,10 +43,10 @@ void Abilitate::setCd(float cd) {
     this->cd = cd;
 }
 
-std::ostream& operator<<(std::ostream& os, const Abilitate& ab) {
-    os<<"Nume abilitate :"<<ab.name<<" cu nivelul "<<ab.nivel<<" si damage "<<ab.damage<<std::endl<<" si cooldown : "<<ab.cd<<std::endl;
-    return os;
-}
+// std::ostream& operator<<(std::ostream& os, const Abilitate& ab) {
+//     os<<"Nume abilitate :"<<ab.name<<" cu nivelul "<<ab.nivel<<" si damage "<<ab.damage<<std::endl<<" si cooldown : "<<ab.cd<<std::endl;
+//     return os;
+// }
 
  Abilitate::~Abilitate() {
     std::cout << "Abilitate distrusa" << std::endl;

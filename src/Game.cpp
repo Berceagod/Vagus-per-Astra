@@ -2,7 +2,7 @@
 #include <iostream>
 #include <math.h>
 #include "raylib.h"
-
+#include "../headers/AdefaultGun.h"
 
 
 Game::Game() {
@@ -43,7 +43,6 @@ void Game::Draw(Texture2D &background) {
 
     EndMode2D();
 }
-
 void Game::HandleInput() {
     // Player controls
     if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) {
@@ -72,6 +71,11 @@ void Game::HandleInput() {
     if (IsKeyDown(KEY_Q)) {
         player.PlayerStrafeLeft();
     }
+    if (IsKeyDown(KEY_T)) {
+        player.addAbility(new AdefaultGun());
+    }
+    player.AbilitiesCheck();
+
 
     player.setPozx(player.getPozx() + (player.getspeedx() * player.getAccel()));
     player.setPozy(player.getPozy() + (player.getspeedy() * player.getAccel()));

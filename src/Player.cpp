@@ -5,7 +5,10 @@
 #include "../headers/Player.h"
 #include <iostream>
 #include <math.h>
-    Player::Player() {
+
+#include "../headers/AdefaultGun.h"
+
+Player::Player() {
         this->pozx= 0;
         this->pozy= 0;
         this->lvl = 0;
@@ -119,9 +122,25 @@
     }
     Player::~Player() {
         std::cout << "Playerul a fost distrus" << std::endl;
-
+        for(Abilitate* abilitate : abilitati) {
+            delete abilitate;
+        }
         UnloadTexture(image);
     }
+
+    void Player::addAbility(Abilitate* abilitate) {
+        abilitati.push_back(abilitate);
+    }
+    void Player::AbilitiesCheck() const {
+        for (Abilitate* abilitate : abilitati) {
+            AdefaultGun* abilitateA = dynamic_cast<AdefaultGun*>(abilitate);
+            if (abilitateA) {
+                std::cout << "Abilitatea A a fost gasita!" << std::endl;
+            }
+        }
+
+    }
+
 
      std::ostream& operator<<(std::ostream& os, const Player& p) {
         os<<"Playerul este aici -> x: "<<p.pozx<<" "<<p.pozy << " Are hpul "<< p.hp<< " si lvl "<<p.lvl << " si xp  "<<p.xpcurent<<" din "<<p.xplvlup<<std::endl;
@@ -153,6 +172,11 @@
         }
         return false;
     }
+
+
+
+
+
 
 void Player::Draw() {
         Rectangle sourceRect = { 0.0f, 0.0f, (float)image.width, (float)image.height };

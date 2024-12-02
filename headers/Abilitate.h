@@ -29,7 +29,7 @@ public:
     void setDamage(float damage);
     void setCd(float cd);
 
-    friend std::ostream& operator<<(std::ostream& os, const Abilitate& ab);
+
 
     ///Non-Virtual interfaces xoxo
 
