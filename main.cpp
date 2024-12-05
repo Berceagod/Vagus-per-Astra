@@ -23,6 +23,7 @@ int main() {
  SetTargetFPS(60);
 
  Texture2D background = LoadTexture("../Textures/Space_Background.png");
+ Texture2D background2=LoadTexture("../Textures/Space_Background2.png");
 
  Game game;
  game.Start();
@@ -46,6 +47,7 @@ int main() {
  AdefaultGun c;
  AElectricField d;
  ABulletBurst e;
+ std::cout<<"AAAAAAA HEIGHT: "<<background.height<<"AAAAA WIDTH"<<background.width<<std::endl;
  return 0;
 }
 

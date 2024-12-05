@@ -4,7 +4,8 @@
 #include "raylib.h"
 #include "../headers/AdefaultGun.h"
 
-
+#define width 800   //Dimensiunile ecranului
+#define height 600
 Game::Game() {
     std::cout << "Jocul a fost creat" << std::endl;
     camera = {0};
@@ -94,7 +95,9 @@ try {
     std::cout << "Exception caught: " << e.what() << std::endl;
 };
     // Camera updates
-    camera.target = (Vector2){player.getPozx(), player.getPozy()};
+    camera.target=(Vector2){0,0};
+    // camera.target = (Vector2){player.getPozx(), player.getPozy()};
+    camera.offset=(Vector2){-player.getPozx()+width/2.0f, -player.getPozy()+height/2.0f};
     camera.zoom += ((float)GetMouseWheelMove() * 0.05f);
 
     // Clamp zoom values
@@ -102,6 +105,20 @@ try {
         camera.zoom = 3.0f;
     else if (camera.zoom < 0.1f)
         camera.zoom = 0.1f;
+
+   /// Camera lock in:
+      if(camera.offset.x>0) {
+          camera.offset.x = 0;
+      }
+     if(camera.offset.y>0) {
+         camera.offset.y=0;
+     }
+    if(camera.offset.x < -1100) {
+        camera.offset.x= -1100;
+    }
+    if(camera.offset.y <-1300) {
+        camera.offset.y= -1300;
+    }
 
     // Reset zoom and rotation
     if (IsKeyPressed(KEY_R)) {
@@ -113,6 +130,7 @@ try {
 
     if (IsKeyDown(KEY_F)) {
         std::cout << "Coordonatele sunt: " << player.getPozx() << " " << player.getPozy() << std::endl;
+        std::cout<<" Camera are offset pe x de: "<<camera.offset.x<<"Si pe y de : "<<camera.offset.y<<std::endl;
     }
 
 

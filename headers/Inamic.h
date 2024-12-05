@@ -26,7 +26,7 @@ public:
     void setHp(int hp);
     void setDmg(int dmg);
     void setXp(int xp);
-    static void CounterIncrement();
+    static void CounterIncrement() ;
     friend std::ostream& operator<<(std::ostream& os, const Inamic& in);
     Inamic& operator=(const Inamic& other);
 
