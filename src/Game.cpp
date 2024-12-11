@@ -17,6 +17,7 @@ void Game::addPlayer(const Player &p) {
 
 void Game::Start() {
     std::cout << "Jocul a inceput" << std::endl;
+    bulletTexture=LoadTexture("../Textures/Default_Texture.jpg");
     InitAudioDevice();
     camera.target = (Vector2){player.getPozx(), player.getPozy()}; // Start camera on player
     camera.offset = (Vector2){800 / 2, 600 / 2};                   // Center camera on screen
@@ -41,7 +42,9 @@ void Game::Draw(Texture2D &background) {
 
     // Draw the player
     player.Draw();
-
+    for (auto &bullet : bullets) {
+        bullet.Draw();
+    }
     EndMode2D();
 }
 void Game::HandleInput() {
@@ -87,7 +90,7 @@ void Game::HandleInput() {
 try {
     player.setPozx(player.getPozx() + (player.getspeedx() * player.getAccel()));
     player.setPozy(player.getPozy() + (player.getspeedy() * player.getAccel()));
-    if(player.getPozy()<0.0f)
+    if(player.getPozy()<0.0f||player.getPozx()<0||player.getPozx()>2000||player.getPozy()>2000)
     {
         throw OutOfBounds();
     }
@@ -113,11 +116,11 @@ try {
      if(camera.offset.y>0) {
          camera.offset.y=0;
      }
-    if(camera.offset.x < -1100) {
-        camera.offset.x= -1100;
+    if(camera.offset.x < -1200) {
+        camera.offset.x= -1200;
     }
-    if(camera.offset.y <-1300) {
-        camera.offset.y= -1300;
+    if(camera.offset.y <-1400) {
+        camera.offset.y= -1400;
     }
 
     // Reset zoom and rotation
@@ -133,11 +136,30 @@ try {
         std::cout<<" Camera are offset pe x de: "<<camera.offset.x<<"Si pe y de : "<<camera.offset.y<<std::endl;
     }
 
+///BUllet logic
+    if(IsKeyDown(KEY_SPACE)) {
+        bullets.emplace_back(
+        Vector2{player.getPozx(), player.getPozy()},
+        10, // Speed
+        player.getRotation(),
+        bulletTexture
+        );
+    }
+    for (auto it = bullets.begin(); it != bullets.end(); ) {
+        it->Update();
+        if (it->getPozX() < 0 || it->getPozY() < 0 ||
+            it->getPozX() > 2000 || it->getPozY() > 2000) {
+            it = bullets.erase(it);
+            } else {
+                ++it;
+            }
+    }
 
 }
 
 void Game::ShutDown() {
     CloseAudioDevice();
+    UnloadTexture(bulletTexture);
 }
 
 float Game::getCameraTargetx() {

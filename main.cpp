@@ -13,7 +13,7 @@
 #include "raylib.h"
 #include "raymath.h"
 #include "headers/ABulletBurst.h"
-
+#include "headers/Bullet.h"
 int main() {
  const int screenWidth =  800;
  const int screenHeight = 600;
@@ -23,8 +23,9 @@ int main() {
  SetTargetFPS(60);
 
  Texture2D background = LoadTexture("../Textures/Space_Background.png");
- Texture2D background2=LoadTexture("../Textures/Space_Background2.png");
-
+ Texture2D background2 = LoadTexture("../Textures/Space_Background2.png");
+ Texture2D background3 = LoadTexture("../Textures/Space_Background3.png");
+ Texture2D background4 = LoadTexture("../Textures/Space_Background4.png");
  Game game;
  game.Start();
 
@@ -35,12 +36,14 @@ int main() {
   ClearBackground(BLACK);
 
   // Draw everything inside the camera
-  game.Draw(background);
+  game.Draw(background4);
 
   EndDrawing();
  }
-
  UnloadTexture(background);
+ UnloadTexture(background2);
+ UnloadTexture(background3);
+ UnloadTexture(background4);
  game.ShutDown();
  CloseWindow();
  ANuke b;

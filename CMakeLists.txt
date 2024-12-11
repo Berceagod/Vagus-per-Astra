@@ -40,6 +40,8 @@ add_executable(${PROJECT_NAME}
         src/ABulletBurst.cpp
         headers/CostumExceptions.h
         src/CostumExceptions.cpp
+        headers/Bullet.h
+        src/Bullet.cpp
 )
 
 # Include Raylib's header directory explicitly
