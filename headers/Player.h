@@ -67,7 +67,8 @@ public:
     void hit( int dmg );
     void lvlup(int level);
     [[nodiscard]] bool alive() const;
-    void getKillXp(const Inamic& in);
+
+    template <typename DmgType> void getKillXp(const Inamic<DmgType>& in);
     [[nodiscard]]bool CheckXP();
 
     void addAbility(Abilitate* abilitate);

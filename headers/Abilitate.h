@@ -7,7 +7,6 @@
 #include <string>
 #include <memory>
 #include "raylib.h"
-
 class Abilitate {
 private:
     float damage;

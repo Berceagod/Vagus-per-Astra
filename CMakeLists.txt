@@ -42,6 +42,10 @@ add_executable(${PROJECT_NAME}
         src/CostumExceptions.cpp
         headers/Bullet.h
         src/Bullet.cpp
+        headers/AbilitateFactory.h
+        src/AbilitateFactory.cpp
+        headers/InamicBuilder.h
+        src/InamicBuilder.cpp
 )
 
 # Include Raylib's header directory explicitly

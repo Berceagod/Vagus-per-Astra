@@ -170,7 +170,7 @@ Player::Player() {
     [[nodiscard]] bool Player::alive() const {
         return hp>0;
     }
-    void Player::getKillXp(const Inamic& in) {
+    template <typename DmgType> void Player::getKillXp(const Inamic<DmgType>& in) {
         this->xpcurent=this->xpcurent+in.getXp();
     }
     [[nodiscard]]bool Player::CheckXP() {

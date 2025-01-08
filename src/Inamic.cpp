@@ -4,67 +4,102 @@
 
 #include "../headers/Inamic.h"
 #include <iostream>
-int Inamic::Counter = 0;
-    Inamic::Inamic() {
-        this->hp=0;
-        this->xp = 0;
-        this->name="Nu exista";
-        this->dmg=0;
-    };
-Inamic::Inamic(const std::string &name,int hp, int damage,int xp) {
-    this->name = name;
-    this->hp = hp;
-    this->dmg = damage;
-    this->xp=xp;
-}
-[[nodiscard]] int Inamic::getHp() const {
+//
+// Created by mihne on 11/7/2024.
+//
+
+#include "../headers/Inamic.h"
+#include <iostream>
+// Inițializarea membrului static
+// Inițializarea membrului static
+template <typename DmgType>
+int Inamic<DmgType>::Counter = 0;
+
+// Constructor implicit
+template <typename DmgType>
+Inamic<DmgType>::Inamic()
+    : hp(0), name("Nu exista"), dmg(0), xp(0) {}
+
+// Constructor parametrizat
+template <typename DmgType>
+Inamic<DmgType>::Inamic(const std::string &name, int hp, DmgType damage, int xp)
+    : name(name), hp(hp), dmg(damage), xp(xp) {}
+
+// Getter pentru hp
+template <typename DmgType>
+int Inamic<DmgType>::getHp() const {
     return hp;
 }
-std::string &Inamic::getName() {
+
+// Getter pentru name
+template <typename DmgType>
+std::string &Inamic<DmgType>::getName() {
     return name;
 }
-[[nodiscard]] int Inamic::getDmg() const {
+
+// Getter pentru dmg
+template <typename DmgType>
+DmgType Inamic<DmgType>::getDmg() const {
     return dmg;
 }
-[[nodiscard]] int Inamic::getXp() const {
+
+// Getter pentru xp
+template <typename DmgType>
+int Inamic<DmgType>::getXp() const {
     return xp;
 }
-void Inamic::setName(const std::string &name) {
+
+// Setter pentru name
+template <typename DmgType>
+void Inamic<DmgType>::setName(const std::string &name) {
     this->name = name;
 }
-void Inamic::setHp(int hp) {
+
+// Setter pentru hp
+template <typename DmgType>
+void Inamic<DmgType>::setHp(int hp) {
     this->hp = hp;
 }
-void Inamic::setDmg(int dmg) {
+
+// Setter pentru dmg
+template <typename DmgType>
+void Inamic<DmgType>::setDmg(DmgType dmg) {
     this->dmg = dmg;
 }
-void Inamic::setXp(int xp) {
+
+// Setter pentru xp
+template <typename DmgType>
+void Inamic<DmgType>::setXp(int xp) {
     this->xp = xp;
 }
-std::ostream& operator<<(std::ostream& os, const Inamic& in) {
-    os<<"Inamicul cu nume "<<in.name<<" cu hp ul de "<<in.hp<<" si damageul "<<in.dmg<<" si da xp-ul : "<<in.xp<<std::endl;
-    return os;
-}
-Inamic& Inamic::operator=(const Inamic& other) {
-    if (this != &other) {
-        hp=other.hp;
-        name=other.name;
-        dmg=other.dmg;
-        xp=other.xp;
-    }
-    return *this;
 
-}
-void Inamic::lvlup() {
-    this->hp = this->hp+static_cast<int>(this->hp*0.10);
-    this->dmg = this->dmg+1;
-}
-
-void Inamic::CounterIncrement() {
+// Incrementarea contorului static
+template <typename DmgType>
+void Inamic<DmgType>::CounterIncrement() {
     Counter++;
 }
 
+// Operator de atribuire
+template <typename DmgType>
+Inamic<DmgType> &Inamic<DmgType>::operator=(const Inamic &other) {
+    if (this != &other) {
+        hp = other.hp;
+        name = other.name;
+        dmg = other.dmg;
+        xp = other.xp;
+    }
+    return *this;
+}
 
-Inamic::~Inamic() {
+// Nivel în sus
+template <typename DmgType>
+void Inamic<DmgType>::lvlup() {
+    this->hp += static_cast<int>(this->hp * 0.10);
+    this->dmg += static_cast<DmgType>(1);
+}
+
+// Destructor
+template <typename DmgType>
+Inamic<DmgType>::~Inamic() {
     std::cout << "Inamic distrus " << std::endl;
-};
+}

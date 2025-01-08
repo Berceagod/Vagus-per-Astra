@@ -8,6 +8,7 @@
 #include "raylib.h"
 #include "CostumExceptions.h"
 #include "Bullet.h"
+#include "AbilitateFactory.h"
 class Game{
 private:
     Player player;

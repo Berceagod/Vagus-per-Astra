@@ -5,35 +5,47 @@
 #ifndef INAMIC_H
 #define INAMIC_H
 #include <string>
+#include <string>
+#include <iostream>
 
-
-class Inamic{
+template <typename DmgType>
+class Inamic {
 private:
     int hp;
     std::string name;
-    int dmg;
+    DmgType dmg; // Tipul general pentru damage
     int xp;
     static int Counter;
+
 public:
     Inamic();
-    Inamic(const std::string &name,int hp, int damage,int xp);
+    Inamic(const std::string &name, int hp, DmgType damage, int xp);
+
     [[nodiscard]] int getHp() const;
     std::string &getName();
-    [[nodiscard]] int getDmg() const;
+    [[nodiscard]] DmgType getDmg() const;
     [[nodiscard]] int getXp() const;
 
     void setName(const std::string &name);
     void setHp(int hp);
-    void setDmg(int dmg);
+    void setDmg(DmgType dmg);
     void setXp(int xp);
-    static void CounterIncrement() ;
-    friend std::ostream& operator<<(std::ostream& os, const Inamic& in);
-    Inamic& operator=(const Inamic& other);
+
+    static void CounterIncrement();
+
+    friend std::ostream &operator<<(std::ostream &os, const Inamic &in) {
+        os << "Inamicul cu nume " << in.name
+           << " cu hp-ul de " << in.hp
+           << " si damage-ul " << in.dmg
+           << " si da xp-ul: " << in.xp << std::endl;
+        return os;
+    }
+
+    Inamic &operator=(const Inamic &other);
 
     void lvlup();
 
     ~Inamic();
-
 };
 
 
